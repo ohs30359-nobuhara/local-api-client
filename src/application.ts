@@ -1,5 +1,5 @@
 import { BrowserWindow, app } from 'electron'
-import * as fastify from 'fastify'
+import fastify from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
 
 // setup local server
@@ -20,7 +20,7 @@ app.on('ready', () => {
     }
   });
 
-  window.webContents.openDevTools();
+  // window.webContents.openDevTools();
 
   window.loadFile('index.html').catch((e) => {
     console.log(e);

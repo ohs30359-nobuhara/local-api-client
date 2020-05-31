@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@material-ui/core": "^4.9.14",
+    "@material-ui/icons": "^4.9.1",
     "electron": "^8.3.0",
     "fastify": "^2.14.1",
     "react": "^16.13.1",
