@@ -9,7 +9,7 @@ import {
   createStyles,
   Theme,
   ListItemSecondaryAction,
-  IconButton
+  IconButton,
 } from "@material-ui/core";
 import {
   ExpandMore,
@@ -26,7 +26,11 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-export const MenuListPresentation: FunctionComponent = () => {
+/**
+ * MenuItemTypeSelectPresentation
+ * @constructor
+ */
+export const MenuItemTypeSelectPresentation: FunctionComponent = () => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 

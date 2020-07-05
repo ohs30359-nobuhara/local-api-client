@@ -1,7 +1,8 @@
 import React, { FunctionComponent } from 'react';
-import { AppBar, Toolbar, Typography, Drawer, CssBaseline} from '@material-ui/core';
+import { Typography, Drawer, CssBaseline} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import {MenuItemsPresentation} from "../component/menuItems/presentation";
+import {MenuItemsPresentation} from "../component/MenuItems/presentation";
+import {TopNavigationPresentation} from "../component/TopNavigation/presentation";
 
 /**
  * デフォルトテンプレート
@@ -15,10 +16,6 @@ export const DefaultTemplatePresentation: FunctionComponent = ({children}) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       display: 'flex',
-    },
-    appBar: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
     },
     drawer: {
       width: drawerWidth,
@@ -41,13 +38,7 @@ export const DefaultTemplatePresentation: FunctionComponent = ({children}) => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" noWrap>
-            Permanent drawer
-          </Typography>
-        </Toolbar>
-      </AppBar>
+      <TopNavigationPresentation drawerWidth={drawerWidth} />
       <Drawer
         className={classes.drawer}
         variant="permanent"
@@ -59,7 +50,6 @@ export const DefaultTemplatePresentation: FunctionComponent = ({children}) => {
         <div className={classes.toolbar} />
 
         <MenuItemsPresentation menus={ [{label: 'Inbox'}, {label: 'Mail'}] } />
-        <MenuItemsPresentation menus={ [{label: 'Trash'}, {label: 'Spam'}] } />
       </Drawer>
       <main className={classes.content}>
         <Typography paragraph>

@@ -22,7 +22,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MenuListPresentation = void 0;
+exports.MenuItemTypeSelectPresentation = void 0;
 const react_1 = __importStar(require("react"));
 const makeStyles_1 = __importDefault(require("@material-ui/core/styles/makeStyles"));
 const core_1 = require("@material-ui/core");
@@ -32,7 +32,7 @@ const useStyles = makeStyles_1.default((theme) => core_1.createStyles({
         paddingLeft: theme.spacing(4),
     },
 }));
-exports.MenuListPresentation = () => {
+exports.MenuItemTypeSelectPresentation = () => {
     const classes = useStyles();
     const [open, setOpen] = react_1.useState(false);
     const handleClick = () => {

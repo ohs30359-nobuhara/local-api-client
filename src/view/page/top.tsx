@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import {DefaultTemplatePresentation} from "../template/default";
-import {CreateProjectPresentation} from "../component/createProject/presentation";
+import {CreateProjectButtonPresentation} from "../component/CreateProjectButton/presentation";
 
 /**
  * トップページ
@@ -10,8 +10,7 @@ import {CreateProjectPresentation} from "../component/createProject/presentation
 export const TopPagePresentation: FunctionComponent<any> = (props) => {
   return (
     <DefaultTemplatePresentation>
-      Home
-      <CreateProjectPresentation />
+      <CreateProjectButtonPresentation />
     </DefaultTemplatePresentation>
   );
 };
