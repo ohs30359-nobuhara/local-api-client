@@ -40,4 +40,3 @@ exports.SplitButtonPresentation = (props) => {
                     react_1.default.createElement(core_1.ClickAwayListener, { onClickAway: handleClose },
                         react_1.default.createElement(core_1.MenuList, { id: "split-button-menu" }, props.options.map((option, index) => (react_1.default.createElement(core_1.MenuItem, { key: option, disabled: index === 2, selected: index === selectedIndex, onClick: (event) => handleMenuItemClick(event, index) }, option))))))))))));
 };
-//# sourceMappingURL=presentation.js.map

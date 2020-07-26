@@ -41,4 +41,3 @@ exports.DefaultTemplatePresentation = ({ children }) => {
         react_1.default.createElement("main", { className: classes.content },
             react_1.default.createElement(core_1.Typography, { paragraph: true }, children))));
 };
-//# sourceMappingURL=default.js.map

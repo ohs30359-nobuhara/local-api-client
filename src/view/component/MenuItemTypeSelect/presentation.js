@@ -52,4 +52,3 @@ exports.MenuItemTypeSelectPresentation = () => {
                         react_1.default.createElement(core_1.IconButton, null,
                             react_1.default.createElement(icons_1.Edit, null))))))));
 };
-//# sourceMappingURL=presentation.js.map

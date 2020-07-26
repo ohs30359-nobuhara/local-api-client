@@ -29,4 +29,3 @@ exports.SelectBoxPresentation = (props) => {
             react_1.default.createElement(InputLabel_1.default, { id: "demo-controlled-open-select-label" }, "Age"),
             react_1.default.createElement(Select_1.default, { labelId: "demo-controlled-open-select-label", id: "demo-controlled-open-select", open: open, onClose: handleClose, onOpen: handleOpen, value: value, onChange: handleChange }, selectItems))));
 };
-//# sourceMappingURL=presentation.js.map

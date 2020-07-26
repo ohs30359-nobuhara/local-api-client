@@ -21,7 +21,6 @@ app.on('ready', () => {
   });
 
   // window.webContents.openDevTools();
-
   window.loadFile('index.html').catch((e) => {
     console.log(e);
   });

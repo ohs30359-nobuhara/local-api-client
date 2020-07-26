@@ -31,4 +31,3 @@ exports.MenuItemsPresentation = (props) => {
         react_1.default.createElement(core_1.Divider, null),
         react_1.default.createElement(core_1.List, { component: "nav", className: classes.root, subheader: react_1.default.createElement(core_1.ListSubheader, { component: "div", id: "nested-list-subheader" }, "Project List") }, list)));
 };
-//# sourceMappingURL=presentation.js.map

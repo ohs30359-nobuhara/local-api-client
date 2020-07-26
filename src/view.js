@@ -23,4 +23,3 @@ const React = __importStar(require("react"));
 const ReactDOM = __importStar(require("react-dom"));
 const top_1 = require("./view/page/top");
 ReactDOM.render(React.createElement(top_1.TopPagePresentation, null), document.getElementById("example"));
-//# sourceMappingURL=view.js.map

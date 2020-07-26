@@ -26,4 +26,3 @@ exports.TopNavigationPresentation = (props) => {
             react_1.default.createElement(core_1.Typography, { variant: "h6", className: classes.title }, "News"),
             react_1.default.createElement(core_1.Button, { color: "inherit" }, "Login"))));
 };
-//# sourceMappingURL=presentation.js.map

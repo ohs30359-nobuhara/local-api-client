@@ -1,16 +1,10 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const {TsConfigPathsPlugin} = require('awesome-typescript-loader');
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-
-const htmlWebpackPlugin = new HtmlWebPackPlugin({
-  template: "./src/index.html",
-  filename: "./index.html"
-});
 
 module.exports = {
   mode: 'development',
-  entry: './src/view.tsx',
+  entry: './src/server/index.ts',
   target: 'node',
   externals: [nodeExternals()],
   node: {
@@ -21,7 +15,7 @@ module.exports = {
     rules: [
       {
         loader: 'ts-loader',
-        test: /\.ts(x?)$/,
+        test: /\.ts$/,
         exclude: [
           /node_modules/
         ],
@@ -35,11 +29,10 @@ module.exports = {
     plugins: [
       new TsConfigPathsPlugin()
     ],
-    extensions: ['.ts', '.tsx']
+    extensions: ['.ts']
   },
   output: {
-    filename: 'view.js',
+    filename: 'server.js',
     path: path.resolve(`${__dirname}/../`, './dist')
   },
-  plugins: [htmlWebpackPlugin]
 }

@@ -72,4 +72,3 @@ exports.ApiStatusPresentation = (props) => {
             react_1.default.createElement(core_1.TextField, { fullWidth: true, className: classes.margin, label: "Body", multiline: true, rows: 10, defaultValue: "Return Body", variant: "outlined" })),
         react_1.default.createElement(core_1.Button, { className: classes.margin, variant: "contained", color: "primary" }, "\u4F5C\u6210")));
 };
-//# sourceMappingURL=presentation.js.map

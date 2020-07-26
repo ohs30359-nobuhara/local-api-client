@@ -26,4 +26,3 @@ electron_1.app.on('ready', () => {
         window = null;
     });
 });
-//# sourceMappingURL=application.js.map

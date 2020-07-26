@@ -47,4 +47,3 @@ exports.CreateApiButtonPresentation = () => {
                 react_1.default.createElement(core_1.Button, { onClick: handleWindowClose, color: "primary" }, "Create"))),
         react_1.default.createElement(presentation_1.ApiStatusPresentation, null)));
 };
-//# sourceMappingURL=presentation.js.map

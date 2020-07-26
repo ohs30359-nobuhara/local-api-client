@@ -7,7 +7,6 @@ module.exports = {
   entry: './src/application.ts',
   target: 'node',
   externals: [nodeExternals()],
-  devtool: 'inline-source-map',
   node: {
     __filename: true,
     __dirname: true
@@ -33,7 +32,7 @@ module.exports = {
     extensions: ['.ts']
   },
   output: {
-    filename: 'server.js',
+    filename: 'gui.js',
     path: path.resolve(`${__dirname}/../`, './dist')
   },
 }

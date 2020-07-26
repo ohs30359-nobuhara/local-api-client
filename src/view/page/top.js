@@ -11,4 +11,3 @@ exports.TopPagePresentation = (props) => {
     return (react_1.default.createElement(default_1.DefaultTemplatePresentation, null,
         react_1.default.createElement(presentation_1.CreateProjectButtonPresentation, null)));
 };
-//# sourceMappingURL=top.js.map
