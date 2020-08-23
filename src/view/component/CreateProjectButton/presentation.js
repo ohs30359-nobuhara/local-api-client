@@ -33,8 +33,7 @@ exports.CreateProjectButtonPresentation = () => {
         setOpen(false);
     };
     return (react_1.default.createElement("div", null,
-        react_1.default.createElement(core_1.IconButton, { onClick: handleOpen },
-            react_1.default.createElement(icons_1.PlaylistAdd, null)),
+        react_1.default.createElement(core_1.Button, { color: "primary", endIcon: react_1.default.createElement(icons_1.Add, null), onClick: handleOpen }, "Create New Project"),
         react_1.default.createElement(core_1.Dialog, { open: open, onClose: handleClose, "aria-labelledby": "form-dialog-title", fullWidth: true, maxWidth: 'lg' },
             react_1.default.createElement(core_1.DialogTitle, { id: "form-dialog-title" }, "\u30D7\u30ED\u30B8\u30A7\u30AF\u30C8\u65B0\u898F\u4F5C\u6210"),
             react_1.default.createElement(core_1.DialogContent, null,

@@ -8,15 +8,21 @@ import {
   List,
   createStyles,
   Theme,
-  ListItemSecondaryAction,
-  IconButton,
 } from "@material-ui/core";
 import {
   ExpandMore,
   ExpandLess,
-  Folder,
-  Edit
 } from '@material-ui/icons';
+
+interface MenuItemTypeSelectProps {
+  iconComponent: JSX.Element,
+  label: string,
+  selectItems:  Array<{
+    label: string,
+    iconComponent: JSX.Element
+  }>
+}
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -30,9 +36,19 @@ const useStyles = makeStyles((theme: Theme) =>
  * MenuItemTypeSelectPresentation
  * @constructor
  */
-export const MenuItemTypeSelectPresentation: FunctionComponent = () => {
+export const MenuItemTypeSelectPresentation: FunctionComponent<MenuItemTypeSelectProps> = (props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+
+  const selectItems: JSX.Element[] = props.selectItems.map(item => {
+    return (
+      <List component="div" disablePadding>
+        <ListItem button className={classes.nested}>
+          <ListItemText primary={item.label} />
+        </ListItem>
+      </List>
+    )
+  });
 
   const handleClick = () => {
     setOpen(!open);
@@ -42,20 +58,13 @@ export const MenuItemTypeSelectPresentation: FunctionComponent = () => {
     <>
       <ListItem button onClick={handleClick}>
         <ListItemIcon>
-          <Folder/>
+          {props.iconComponent}
         </ListItemIcon>
-        <ListItemText primary="Inbox" />
+        <ListItemText primary={props.label} />
         {open ? <ExpandLess /> : <ExpandMore />}
       </ListItem>
       <Collapse in={open} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          <ListItem button className={classes.nested}>
-            <ListItemText primary="Starred" />
-            <ListItemSecondaryAction>
-              <IconButton><Edit/></IconButton>
-            </ListItemSecondaryAction>
-          </ListItem>
-        </List>
+        {selectItems}
       </Collapse>
     </>
   )

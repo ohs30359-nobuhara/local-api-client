@@ -57,6 +57,17 @@ let Project = (() => {
                 return project;
             });
         }
+        static findByName(name) {
+            return __awaiter(this, void 0, void 0, function* () {
+                let project = null;
+                (yield driver_1.sqliteDriver.select('SELECT * FROM PROJECT WHERE NAME = ?', [name])).forEach((record) => {
+                    project = new Project_1();
+                    project.id = record.id;
+                    project.name = record.name;
+                });
+                return project;
+            });
+        }
         static index() {
             return __awaiter(this, void 0, void 0, function* () {
                 return (yield driver_1.sqliteDriver.select('SELECT * FROM PROJECT')).map((record) => {

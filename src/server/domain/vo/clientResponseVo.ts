@@ -21,7 +21,7 @@ export class ClientResponseVo<T = any> {
   ) {
     this.status = status;
     this.response = response;
-    this.headers = headers.getHeader();
+    this.headers = headers;
   }
 
   /**
@@ -34,5 +34,12 @@ export class ClientResponseVo<T = any> {
     headers: any
   ): ClientResponseVo {
     return new ClientResponseVo(200, response, headers);
+  }
+
+  public static createError(
+    response: any,
+    headers: any,
+    status: number): ClientResponseVo {
+    return new ClientResponseVo(status, response, headers);
   }
 }

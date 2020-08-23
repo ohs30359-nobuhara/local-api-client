@@ -11,7 +11,7 @@
     "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "allowJs": true,
+    "allowJs": false,
     "strictFunctionTypes": false,
     "jsx": "react",
     "esModuleInterop": true

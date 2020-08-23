@@ -11,9 +11,11 @@ export class Response extends Schema {
   public label: string | null = null;
   public status: number | null = null;
   public contentType: string | null = null;
+  public response: string | null = null;
+  public api_id: number | null = null;
 
   async create(): Promise<boolean> {
-    return await sqliteDriver.insert('INSERT INTO RESPONSE (LABEL, STATUS, CONTENT_TYPE) VALUES  (?)', [this.label, this.status, this.contentType]);
+    return await sqliteDriver.insert('INSERT INTO RESPONSE (LABEL, STATUS, CONTENT_TYPE, RESPONSE, API_ID) VALUES  (?)', [this.label, this.status, this.contentType, this.response, this.api_id]);
   }
 
   async destroy(): Promise<boolean> {
@@ -37,6 +39,8 @@ export class Response extends Schema {
       m.label = record.label;
       m.status = record.status;
       m.contentType = record.contentType;
+      m.response = record.response;
+      m.api_id = record.api_id;
     });
 
     return m;
@@ -48,7 +52,20 @@ export class Response extends Schema {
       m.id = record.id;
       m.label = record.label;
       m.status = record.status;
-      m.contentType = record.contentType;
+      m.contentType = record.content_type;
+      m.response = record.response;
+      m.api_id = record.api_id;
+      return m;
+    });
+  }
+
+  static async findByRequestPath(projectName: number, apiPath: string): Promise<Array<Response>> {
+    const sql: string = `SELECT response.response, response.status, response.content_type FROM response INNER JOIN api ON api.id = response.api_id INNER JOIN project ON project.id = api.project_id WHERE project.name = ? AND api.path = ?;`;
+    return (await sqliteDriver.select(sql, [projectName, apiPath])).map((record: any) => {
+      const m: Response = new Response();
+      m.status = record.status;
+      m.contentType = record.content_type;
+      m.response = record.response;
       return m;
     });
   }

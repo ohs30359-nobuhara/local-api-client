@@ -5,10 +5,13 @@ class ClientResponseVo {
     constructor(status, response, headers) {
         this.status = status;
         this.response = response;
-        this.headers = headers.getHeader();
+        this.headers = headers;
     }
     static createSuccessful(response, headers) {
         return new ClientResponseVo(200, response, headers);
+    }
+    static createError(response, headers, status) {
+        return new ClientResponseVo(status, response, headers);
     }
 }
 exports.ClientResponseVo = ClientResponseVo;

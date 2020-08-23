@@ -63,9 +63,36 @@ let Api = (() => {
                 return m;
             });
         }
+        static findByPath(path) {
+            return __awaiter(this, void 0, void 0, function* () {
+                let m = null;
+                (yield driver_1.sqliteDriver.select('SELECT * FROM Api WHERE PATH = ?', [path])).forEach((record) => {
+                    m = new Api_1();
+                    m.id = record.id;
+                    m.name = record.name;
+                    m.method = record.method;
+                    m.path = record.path;
+                    m.project_id = record.project_id;
+                });
+                return m;
+            });
+        }
         static index() {
             return __awaiter(this, void 0, void 0, function* () {
                 return (yield driver_1.sqliteDriver.select('SELECT * FROM API')).map((record) => {
+                    const m = new Api_1();
+                    m.id = record.id;
+                    m.name = record.name;
+                    m.method = record.method;
+                    m.path = record.path;
+                    m.project_id = record.project_id;
+                    return m;
+                });
+            });
+        }
+        static findByProject(id) {
+            return __awaiter(this, void 0, void 0, function* () {
+                return (yield driver_1.sqliteDriver.select('SELECT * FROM API WHERE PROJECT_ID = ?', [id])).map((record) => {
                     const m = new Api_1();
                     m.id = record.id;
                     m.name = record.name;

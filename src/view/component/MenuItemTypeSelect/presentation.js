@@ -32,23 +32,21 @@ const useStyles = makeStyles_1.default((theme) => core_1.createStyles({
         paddingLeft: theme.spacing(4),
     },
 }));
-exports.MenuItemTypeSelectPresentation = () => {
+exports.MenuItemTypeSelectPresentation = (props) => {
     const classes = useStyles();
     const [open, setOpen] = react_1.useState(false);
+    const selectItems = props.selectItems.map(item => {
+        return (react_1.default.createElement(core_1.List, { component: "div", disablePadding: true },
+            react_1.default.createElement(core_1.ListItem, { button: true, className: classes.nested },
+                react_1.default.createElement(core_1.ListItemText, { primary: item.label }))));
+    });
     const handleClick = () => {
         setOpen(!open);
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(core_1.ListItem, { button: true, onClick: handleClick },
-            react_1.default.createElement(core_1.ListItemIcon, null,
-                react_1.default.createElement(icons_1.Folder, null)),
-            react_1.default.createElement(core_1.ListItemText, { primary: "Inbox" }),
+            react_1.default.createElement(core_1.ListItemIcon, null, props.iconComponent),
+            react_1.default.createElement(core_1.ListItemText, { primary: props.label }),
             open ? react_1.default.createElement(icons_1.ExpandLess, null) : react_1.default.createElement(icons_1.ExpandMore, null)),
-        react_1.default.createElement(core_1.Collapse, { in: open, timeout: "auto", unmountOnExit: true },
-            react_1.default.createElement(core_1.List, { component: "div", disablePadding: true },
-                react_1.default.createElement(core_1.ListItem, { button: true, className: classes.nested },
-                    react_1.default.createElement(core_1.ListItemText, { primary: "Starred" }),
-                    react_1.default.createElement(core_1.ListItemSecondaryAction, null,
-                        react_1.default.createElement(core_1.IconButton, null,
-                            react_1.default.createElement(icons_1.Edit, null))))))));
+        react_1.default.createElement(core_1.Collapse, { in: open, timeout: "auto", unmountOnExit: true }, selectItems)));
 };

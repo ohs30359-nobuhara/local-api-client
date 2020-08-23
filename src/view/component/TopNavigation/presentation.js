@@ -15,14 +15,25 @@ exports.TopNavigationPresentation = (props) => {
         },
         menuButton: {
             marginRight: theme.spacing(2),
+            color: 'white'
         },
         title: {
             flexGrow: 1,
         },
     }));
     const classes = useStyles();
+    const [anchorEl, setAnchorEl] = react_1.default.useState(null);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
     return (react_1.default.createElement(core_1.AppBar, { position: "fixed", className: classes.root },
         react_1.default.createElement(core_1.Toolbar, null,
             react_1.default.createElement(core_1.Typography, { variant: "h6", className: classes.title }, "News"),
-            react_1.default.createElement(core_1.Button, { color: "inherit" }, "Login"))));
+            react_1.default.createElement(core_1.Button, { className: classes.menuButton, "aria-controls": "simple-menu", "aria-haspopup": "true", color: "secondary", onClick: handleClick }, "create"),
+            react_1.default.createElement(core_1.Menu, { id: "simple-menu", anchorEl: anchorEl, keepMounted: true, open: Boolean(anchorEl), onClose: handleClose },
+                react_1.default.createElement(core_1.MenuItem, { onClick: handleClose }, "project"),
+                react_1.default.createElement(core_1.MenuItem, { onClick: handleClose }, "api")))));
 };

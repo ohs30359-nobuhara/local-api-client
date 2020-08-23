@@ -38,6 +38,18 @@ export class Project extends Schema {
     return project;
   }
 
+  static async findByName(name: string): Promise<Project | null>{
+    let project: Project | null = null;
+
+    (await sqliteDriver.select('SELECT * FROM PROJECT WHERE NAME = ?', [name])).forEach((record: any) => {
+      project = new Project();
+      project.id = record.id;
+      project.name = record.name;
+    });
+
+    return project;
+  }
+
   static async index(): Promise<Array<Project>> {
     return (await sqliteDriver.select('SELECT * FROM PROJECT')).map((record: any) => {
       const project: Project = new Project();

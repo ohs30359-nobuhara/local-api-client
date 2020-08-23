@@ -17,17 +17,23 @@ const useStyles = core_1.makeStyles((theme) => core_1.createStyles({
 }));
 exports.MenuItemsPresentation = (props) => {
     const classes = useStyles();
+    const selectItems = [
+        { label: 'Project' },
+        { label: 'Api' }
+    ];
     const list = props.menus.map(menu => {
-        return (react_1.default.createElement(presentation_1.MenuItemTypeSelectPresentation, null));
+        return (react_1.default.createElement(presentation_1.MenuItemTypeSelectPresentation, { label: menu.label, iconComponent: (react_1.default.createElement(icons_1.Folder, null)), selectItems: selectItems }));
     });
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(core_1.Divider, null),
         react_1.default.createElement(core_1.List, { component: "nav", className: classes.root },
             react_1.default.createElement(core_1.ListItem, { button: true },
                 react_1.default.createElement(core_1.ListItemIcon, null,
-                    react_1.default.createElement(icons_1.Edit, null)),
-                react_1.default.createElement(core_1.ListItemText, { primary: "Inbox" })),
-            react_1.default.createElement(presentation_1.MenuItemTypeSelectPresentation, null)),
+                    react_1.default.createElement(icons_1.Home, null)),
+                react_1.default.createElement(core_1.ListItemText, { primary: "TOP" }))),
         react_1.default.createElement(core_1.Divider, null),
-        react_1.default.createElement(core_1.List, { component: "nav", className: classes.root, subheader: react_1.default.createElement(core_1.ListSubheader, { component: "div", id: "nested-list-subheader" }, "Project List") }, list)));
+        react_1.default.createElement(core_1.List, null,
+            " ",
+            list,
+            " ")));
 };

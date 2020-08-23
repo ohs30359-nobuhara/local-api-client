@@ -27,10 +27,12 @@ let Response = (() => {
             this.label = null;
             this.status = null;
             this.contentType = null;
+            this.response = null;
+            this.api_id = null;
         }
         create() {
             return __awaiter(this, void 0, void 0, function* () {
-                return yield driver_1.sqliteDriver.insert('INSERT INTO RESPONSE (LABEL, STATUS, CONTENT_TYPE) VALUES  (?)', [this.label, this.status, this.contentType]);
+                return yield driver_1.sqliteDriver.insert('INSERT INTO RESPONSE (LABEL, STATUS, CONTENT_TYPE, RESPONSE, API_ID) VALUES  (?)', [this.label, this.status, this.contentType, this.response, this.api_id]);
             });
         }
         destroy() {
@@ -57,6 +59,8 @@ let Response = (() => {
                     m.label = record.label;
                     m.status = record.status;
                     m.contentType = record.contentType;
+                    m.response = record.response;
+                    m.api_id = record.api_id;
                 });
                 return m;
             });
@@ -68,7 +72,21 @@ let Response = (() => {
                     m.id = record.id;
                     m.label = record.label;
                     m.status = record.status;
-                    m.contentType = record.contentType;
+                    m.contentType = record.content_type;
+                    m.response = record.response;
+                    m.api_id = record.api_id;
+                    return m;
+                });
+            });
+        }
+        static findByRequestPath(projectName, apiPath) {
+            return __awaiter(this, void 0, void 0, function* () {
+                const sql = `SELECT response.response, response.status, response.content_type FROM response INNER JOIN api ON api.id = response.api_id INNER JOIN project ON project.id = api.project_id WHERE project.name = ? AND api.path = ?;`;
+                return (yield driver_1.sqliteDriver.select(sql, [projectName, apiPath])).map((record) => {
+                    const m = new Response_1();
+                    m.status = record.status;
+                    m.contentType = record.content_type;
+                    m.response = record.response;
                     return m;
                 });
             });

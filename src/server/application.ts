@@ -1,6 +1,9 @@
 import fastify from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
 import {projectRepository} from "./infra/repository/projectRepository";
+import {ClientResponseVo} from "./domain/vo/clientResponseVo";
+import {stabService} from "./service/stabService";
+import {ClientRequestVo} from "./domain/vo/clientRequestVo";
 
 export class Application {
   private readonly server: fastify.FastifyInstance<Server, IncomingMessage, ServerResponse>;
@@ -17,10 +20,9 @@ export class Application {
       res.send(await projectRepository.index());
     });
 
-    this.server.get('/create', (req, res) => {
-      projectRepository.create('sample');
-
-      res.send('ok')
+    this.server.get('/stab/:project//*', async (req, res) => {
+      const responseVo: ClientResponseVo = await stabService.exec(ClientRequestVo.createFromFastify(req));
+      res.status(responseVo.status).send(responseVo.response);
     });
 
     this.server.listen(3000, '0.0.0.0', () => {

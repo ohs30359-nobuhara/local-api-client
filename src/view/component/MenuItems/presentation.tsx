@@ -5,15 +5,16 @@ import {
   makeStyles,
   Theme,
   Divider,
-  ListSubheader,
   ListItem,
   ListItemIcon,
   ListItemText
 } from "@material-ui/core";
 import {MenuItemTypeSelectPresentation} from "../MenuItemTypeSelect/presentation";
 import {
-  Edit
+  Folder,
+  Home,
 } from '@material-ui/icons';
+
 /**
  * MenuItemsPresentationProps
  * @interface
@@ -22,6 +23,9 @@ export interface MenuItemsPresentationProps {
   menus: Array<{ label: string }>
 }
 
+/**
+ * useStyles
+ */
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -39,9 +43,18 @@ const useStyles = makeStyles((theme: Theme) =>
 export const MenuItemsPresentation: FunctionComponent<MenuItemsPresentationProps> = (props) => {
   const classes = useStyles();
 
+  const selectItems: any = [
+    { label: 'Project'},
+    { label: 'Api'}
+  ];
+
   const list: JSX.Element[] = props.menus.map(menu => {
     return (
-      <MenuItemTypeSelectPresentation/>
+      <MenuItemTypeSelectPresentation
+        label={menu.label}
+        iconComponent={(<Folder/>)}
+        selectItems={selectItems}
+      />
     )
   });
 
@@ -50,19 +63,12 @@ export const MenuItemsPresentation: FunctionComponent<MenuItemsPresentationProps
       <Divider/>
         <List component="nav" className={classes.root}>
           <ListItem button>
-            <ListItemIcon><Edit/></ListItemIcon>
-            <ListItemText primary="Inbox" />
+            <ListItemIcon><Home/></ListItemIcon>
+            <ListItemText primary="TOP" />
           </ListItem>
-          <MenuItemTypeSelectPresentation/>
         </List>
       <Divider/>
-      <List
-        component="nav"
-        className={classes.root}
-        subheader={<ListSubheader component="div" id="nested-list-subheader">Project List</ListSubheader>}
-      >
-        {list}
-      </List>
+      <List> {list} </List>
     </>
   );
 };

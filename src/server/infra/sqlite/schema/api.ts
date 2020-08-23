@@ -44,8 +44,35 @@ export class Api extends Schema {
     return m;
   }
 
+  static async findByPath(path: string): Promise<Api| null>{
+    let m: Api | null = null;
+
+    (await sqliteDriver.select('SELECT * FROM Api WHERE PATH = ?', [path])).forEach((record: any) => {
+      m = new Api();
+      m.id = record.id;
+      m.name = record.name;
+      m.method = record.method;
+      m.path = record.path;
+      m.project_id = record.project_id;
+    });
+
+    return m;
+  }
+
   static async index(): Promise<Array<Api>> {
     return (await sqliteDriver.select('SELECT * FROM API')).map((record: any) => {
+      const m: Api = new Api();
+      m.id = record.id;
+      m.name = record.name;
+      m.method = record.method;
+      m.path = record.path;
+      m.project_id = record.project_id;
+      return m;
+    });
+  }
+
+  static async findByProject(id: number): Promise<Array<Api>> {
+    return (await sqliteDriver.select('SELECT * FROM API WHERE PROJECT_ID = ?', [id])).map((record: any) => {
       const m: Api = new Api();
       m.id = record.id;
       m.name = record.name;

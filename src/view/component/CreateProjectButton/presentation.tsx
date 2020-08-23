@@ -7,9 +7,8 @@ import {
   DialogTitle,
   DialogContent,
   TextField,
-  IconButton,
 } from "@material-ui/core";
-import {PlaylistAdd} from '@material-ui/icons';
+import {Add} from '@material-ui/icons';
 import {ApiStatusPresentation} from "../ApiStatus/presentation";
 
 /**
@@ -29,7 +28,11 @@ export const CreateProjectButtonPresentation: FunctionComponent = () => {
 
   return (
     <div>
-      <IconButton onClick={handleOpen}><PlaylistAdd/></IconButton>
+      <Button
+        color="primary"
+        endIcon={<Add/>}
+        onClick={handleOpen}
+      >Create New Project</Button>
       <Dialog
         open={open}
         onClose={handleClose}
