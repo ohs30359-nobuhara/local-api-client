@@ -1,6 +1,5 @@
 import fastify from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
-import {projectRepository} from "./infra/repository/projectRepository";
 import {ClientResponseVo} from "./domain/vo/clientResponseVo";
 import {ClientRequestVo} from "./domain/vo/clientRequestVo";
 import {Router} from "./routing/router";
@@ -32,7 +31,7 @@ export class Application {
 
   public run(): void {
     this.server.get('/', async (req, res) => {
-      res.send(await projectRepository.index());
+      res.status(200).send();
     });
 
     this.server.listen(3000, '0.0.0.0', () => {

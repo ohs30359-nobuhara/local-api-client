@@ -59,6 +59,19 @@ export class Response extends Schema {
     });
   }
 
+  static async findByApi(apiId: number): Promise<Array<Response>> {
+    return (await sqliteDriver.select('SELECT * FROM response WHERE api_id = ?', [apiId])).map((record: any) => {
+      const m: Response = new Response();
+      m.id = record.id;
+      m.label = record.label;
+      m.status = record.status;
+      m.contentType = record.content_type;
+      m.response = record.response;
+      m.api_id = record.api_id;
+      return m;
+    });
+  }
+
   static async findByRequestPath(projectName: number, apiPath: string): Promise<Array<Response>> {
     const sql: string = `SELECT response.response, response.status, response.content_type FROM response INNER JOIN api ON api.id = response.api_id INNER JOIN project ON project.id = api.project_id WHERE project.name = ? AND api.path = ?;`;
     return (await sqliteDriver.select(sql, [projectName, apiPath])).map((record: any) => {

@@ -12,9 +12,9 @@ class ProjectService {
     return ClientResponseVo.createSuccessful(projects);
   }
 
-  public async create(name: string): Promise<ClientResponseVo> {
+  public async create(request: ClientRequestVo<{name: string}>): Promise<ClientResponseVo> {
     const project: Project = new Project();
-    project.name = name;
+    project.name = request.queryParams.name;
 
     try {
       const result: boolean = await project.create();
@@ -24,14 +24,14 @@ class ProjectService {
     }
   }
 
-  public async update(id: number, name: string): Promise<ClientResponseVo> {
-    const project: Project | null = await Project.findById(id);
+  public async update(request: ClientRequestVo<{id: number, name: string}>): Promise<ClientResponseVo> {
+    const project: Project | null = await Project.findById(request.queryParams.id);
 
     if (project == null) {
       return ClientResponseVo.createError('target not found', {}, 400);
     }
 
-    project.name = name;
+    project.name = request.queryParams.name;
 
     try {
       const result: boolean = await project.update();
@@ -41,8 +41,8 @@ class ProjectService {
     }
   }
 
-  public async delete(id: number): Promise<ClientResponseVo> {
-    const project: Project | null = await Project.findById(id);
+  public async delete(request: ClientRequestVo<{id: number, name: string}>): Promise<ClientResponseVo> {
+    const project: Project | null = await Project.findById(request.queryParams.id);
 
     if (project == null) {
       return ClientResponseVo.createError('target not found', {}, 400);
