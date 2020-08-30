@@ -31,7 +31,7 @@ export class ClientResponseVo<T = any> {
    */
   public static createSuccessful(
     response: any,
-    headers: any
+    headers: any = {}
   ): ClientResponseVo {
     return new ClientResponseVo(200, response, headers);
   }

@@ -7,7 +7,7 @@ class ClientResponseVo {
         this.response = response;
         this.headers = headers;
     }
-    static createSuccessful(response, headers) {
+    static createSuccessful(response, headers = {}) {
         return new ClientResponseVo(200, response, headers);
     }
     static createError(response, headers, status) {

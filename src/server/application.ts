@@ -2,12 +2,11 @@ import fastify from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
 import {projectRepository} from "./infra/repository/projectRepository";
 import {ClientResponseVo} from "./domain/vo/clientResponseVo";
-import {stabService} from "./service/stabService";
 import {ClientRequestVo} from "./domain/vo/clientRequestVo";
+import {Router} from "./routing/router";
 
 export class Application {
   private readonly server: fastify.FastifyInstance<Server, IncomingMessage, ServerResponse>;
-
   /**
    * @constructor
    */
@@ -15,14 +14,25 @@ export class Application {
     this.server = fastify({});
   }
 
+  /**
+   * プラグインの指定
+   * @param prefix
+   * @param router
+   */
+  public use(prefix: string, router: Router) {
+    router.mapper.forEach((val, key) => {
+      console.log(key, val);
+      this.server[val.action](`${prefix}${key}`, async (req, res) => {
+        const responseVo: ClientResponseVo = await val.callback(ClientRequestVo.createFromFastify(req));
+
+        res.status(responseVo.status).send(responseVo.response);
+      });
+    })
+  }
+
   public run(): void {
     this.server.get('/', async (req, res) => {
       res.send(await projectRepository.index());
-    });
-
-    this.server.get('/stab/:project//*', async (req, res) => {
-      const responseVo: ClientResponseVo = await stabService.exec(ClientRequestVo.createFromFastify(req));
-      res.status(responseVo.status).send(responseVo.response);
     });
 
     this.server.listen(3000, '0.0.0.0', () => {
@@ -30,3 +40,4 @@ export class Application {
     });
   }
 }
+
