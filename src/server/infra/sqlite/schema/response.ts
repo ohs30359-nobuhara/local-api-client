@@ -72,14 +72,17 @@ export class Response extends Schema {
     });
   }
 
-  static async findByRequestPath(projectName: number, apiPath: string): Promise<Array<Response>> {
+  static async findByRequestPath(projectName: string, apiPath: string): Promise<Response | null> {
     const sql: string = `SELECT response.response, response.status, response.content_type FROM response INNER JOIN api ON api.id = response.api_id INNER JOIN project ON project.id = api.project_id WHERE project.name = ? AND api.path = ?;`;
-    return (await sqliteDriver.select(sql, [projectName, apiPath])).map((record: any) => {
-      const m: Response = new Response();
+    let m: Response | null = null;
+
+   (await sqliteDriver.select(sql, [projectName, apiPath])).map((record: any) => {
+      m = new Response();
       m.status = record.status;
       m.contentType = record.content_type;
       m.response = record.response;
-      return m;
     });
+
+    return m;
   }
 }
