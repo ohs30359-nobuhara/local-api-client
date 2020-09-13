@@ -11,6 +11,8 @@ import {
   MenuItem
 } from "@material-ui/core";
 
+import {Link} from 'react-router-dom'
+
 export interface TopNavigationProps {
   drawerWidth: number
 }
@@ -50,6 +52,11 @@ export const TopNavigationPresentation: FunctionComponent<TopNavigationProps> = 
         <Typography variant="h6" className={classes.title}>
           News
         </Typography>
+        <Link to={'/project'}>
+          <button>
+          Project一覧
+          </button>
+        </Link>
         <Button  className={classes.menuButton} aria-controls="simple-menu" aria-haspopup="true" color="secondary"  onClick={handleClick}>
           create
         </Button>

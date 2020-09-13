@@ -1,8 +1,8 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {TopPagePresentation} from "./view/page/top";
+import {App} from "./view/app";
 
 ReactDOM.render(
-  <TopPagePresentation/>,
+  <App/>,
   document.getElementById("example")
 );
