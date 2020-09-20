@@ -9,10 +9,10 @@ server.listen(10000, '0.0.0.0');
 // setup electron window
 app.on('ready', () => {
   let window: BrowserWindow | null  = new BrowserWindow({
-    width: 800,
-    height: 400,
-    minWidth: 500,
-    minHeight: 200,
+    width: 1200,
+    height: 600,
+    minWidth: 800,
+    minHeight: 400,
     acceptFirstMouse: true,
     titleBarStyle: 'hidden',
     webPreferences: {
@@ -20,7 +20,7 @@ app.on('ready', () => {
     }
   });
 
-  // window.webContents.openDevTools();
+  window.webContents.openDevTools();
   window.loadFile('index.html').catch((e) => {
     console.log(e);
   });

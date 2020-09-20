@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import {TextField, createStyles, makeStyles, Theme, Button} from "@material-ui/core";
+import {TextField, createStyles, makeStyles, Theme } from "@material-ui/core";
 
 const contentTypes = [
   {
@@ -137,11 +137,6 @@ export const ApiStatusPresentation: FunctionComponent = (props) => {
           variant="outlined"
         />
       </div>
-
-      <Button className={classes.margin} variant="contained" color="primary">
-        作成
-      </Button>
-
     </div>
   );
 };

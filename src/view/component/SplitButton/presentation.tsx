@@ -15,7 +15,7 @@ import {
 } from '@material-ui/icons';
 
 export interface SplitButtonProps {
-  options: string[]
+  options: {name: string, handler: () => void}[]
 }
 
 export const SplitButtonPresentation: FunctionComponent<SplitButtonProps> = (props) => {
@@ -24,7 +24,7 @@ export const SplitButtonPresentation: FunctionComponent<SplitButtonProps> = (pro
   const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const handleClick = () => {
-    console.info(`You clicked ${props.options[selectedIndex]}`);
+    props.options[selectedIndex].handler();
   };
 
   const handleMenuItemClick = (
@@ -50,10 +50,10 @@ export const SplitButtonPresentation: FunctionComponent<SplitButtonProps> = (pro
   return (
     <Grid container direction="column" alignItems="center">
       <Grid item xs={12}>
-        <ButtonGroup variant="contained" color="primary" ref={anchorRef} aria-label="split button">
-          <Button onClick={handleClick}>{props.options[selectedIndex]}</Button>
+        <ButtonGroup variant="contained" color="default" ref={anchorRef} aria-label="split button">
+          <Button onClick={handleClick}>{props.options[selectedIndex].name}</Button>
           <Button
-            color="primary"
+            color="default"
             size="small"
             aria-controls={open ? 'split-button-menu' : undefined}
             aria-expanded={open ? 'true' : undefined}
@@ -77,12 +77,12 @@ export const SplitButtonPresentation: FunctionComponent<SplitButtonProps> = (pro
                   <MenuList id="split-button-menu">
                     {props.options.map((option, index) => (
                       <MenuItem
-                        key={option}
+                        key={index}
                         disabled={index === 2}
                         selected={index === selectedIndex}
                         onClick={(event) => handleMenuItemClick(event, index)}
                       >
-                        {option}
+                        {option.name}
                       </MenuItem>
                     ))}
                   </MenuList>
