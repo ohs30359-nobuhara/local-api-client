@@ -7,13 +7,15 @@ import {
   Divider,
   ListItem,
   ListItemIcon,
-  ListItemText
+  ListItemText, Button
 } from "@material-ui/core";
 import {MenuItemTypeSelectPresentation} from "../MenuItemTypeSelect/presentation";
 import {
   Folder,
   Home,
+  CloudCircle, AddCircle
 } from '@material-ui/icons';
+import {Link} from 'react-router-dom'
 
 /**
  * MenuItemsPresentationProps
@@ -66,9 +68,31 @@ export const MenuItemsPresentation: FunctionComponent<MenuItemsPresentationProps
             <ListItemIcon><Home/></ListItemIcon>
             <ListItemText primary="TOP" />
           </ListItem>
+
+          <ListItem button component={Link} to={"/project"}>
+            <ListItemIcon><Folder/></ListItemIcon>
+            <ListItemText primary="Project" />
+          </ListItem>
+
+          <ListItem button component={Link} to={"/project"}>
+            <ListItemIcon><CloudCircle/></ListItemIcon>
+            <ListItemText primary="Api" />
+          </ListItem>
+
         </List>
       <Divider/>
-      <List> {list} </List>
+      <List>
+        <ListItem>
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<AddCircle />}
+          >
+            Create New Api
+          </Button>
+        </ListItem>
+        {list}
+      </List>
     </>
   );
 };
