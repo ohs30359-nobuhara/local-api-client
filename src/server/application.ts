@@ -20,8 +20,9 @@ export class Application {
    */
   public use(prefix: string, router: Router) {
     router.mapper.forEach((val, key) => {
-      console.log(key, val);
-      this.server[val.action](`${prefix}${key}`, async (req, res) => {
+      const path: string = (key.trim() === '/')? '' : key
+
+      this.server[val.action](`${prefix}${path}`, async (req, res) => {
         const responseVo: ClientResponseVo = await val.callback(ClientRequestVo.createFromFastify(req));
 
         res.status(responseVo.status).send(responseVo.response);

@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import React, {FunctionComponent} from 'react';
 import {DefaultTemplatePresentation} from "../template/default";
 import {ProjectManagementPresentation} from "../organisms/ProjectManagement/presentation";
 

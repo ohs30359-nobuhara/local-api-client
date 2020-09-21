@@ -6,20 +6,27 @@
   "dependencies": {
     "@material-ui/core": "^4.9.14",
     "@material-ui/icons": "^4.9.1",
+    "concurrently": "^5.3.0",
     "electron": "^8.3.0",
     "fastify": "^2.15.2",
-    "query-string": "^6.13.1",
+    "query-string": "^6.13.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
     "sqlite3": "^5.0.0",
     "ts-loader": "^7.0.4",
-    "typescript": "^3.9.2"
+    "typescript": "^3.9.2",
+    "typescript-fsa": "^3.0.0",
+    "typescript-fsa-reducers": "^1.2.2"
   },
   "devDependencies": {
     "@types/react": "^16.9.35",
     "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
     "@types/react-router-dom": "^5.1.5",
+    "@types/redux": "^3.6.0",
     "@types/sqlite3": "^3.1.6",
     "awesome-typescript-loader": "^5.2.1",
     "html-webpack-plugin": "^4.3.0",
@@ -33,6 +40,7 @@
     "build-electron": "webpack --config ./config/webpack.electron.config.js",
     "build-server": "webpack --config ./config/webpack.server.config.js",
     "build-view": "webpack --config ./config/webpack.react.config.js",
+    "start": "concurrently \" npm run start-gui \" \"npm run start-server\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

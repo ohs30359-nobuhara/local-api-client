@@ -1,23 +1,27 @@
+import {stringify} from "query-string";
+
 /**
- * HttpRequest
+ * HttpClient
  * @class
  */
-class HttpRequest {
+class HttpClient {
   /**
    * get
    * @param request
    */
   public async get<T=any>(request: HttpRequest): Promise<HttpResponse> {
     try {
-      const response: Response = await fetch(request.url, {
+      // browser仕様で getは bodyを許可しない
+      const queryString: string = stringify(request.body);
+
+      const response: Response = await fetch(`${request.url}?${queryString}`, {
         method: 'GET',
-        body: request.body,
         headers: request.headers
       })
 
       return {
         status: response.status,
-        json: response.json()
+        json: await response.json()
       }
     } catch (e) {
       return {
@@ -70,3 +74,4 @@ interface HttpResponse {
   status: number
   json: any
 }
+export const httpClient: HttpClient = new HttpClient()

@@ -4,7 +4,7 @@ const {TsConfigPathsPlugin} = require('awesome-typescript-loader');
 
 module.exports = {
   mode: 'development',
-  entry: './src/server/app.tsx',
+  entry: './src/server/index.ts',
   target: 'node',
   externals: [nodeExternals()],
   node: {
