@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
-import {DefaultTemplatePresentation} from "../../template/default";
-import {ProjectManagementPresentation} from "../../content/projectManagement";
+import {DefaultTemplatePresentation} from "../template/default";
+import {ProjectManagementPresentation} from "../organisms/ProjectManagement/presentation";
 
 /**
  * Project管理ページ

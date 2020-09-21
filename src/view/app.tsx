@@ -1,17 +1,15 @@
 import React, {FunctionComponent} from 'react';
 import { HashRouter, Route } from 'react-router-dom';
-import {TopPagePresentation} from "./page/top";
-import {ProjectIndexPagePresentation} from "./page/project";
-import {ProjectCreatePagePresentation} from "./page/project/create";
-import {ProjectEditPagePresentation} from "./page/project/edit";
+import {TopPagePresentation} from "./component/pages/top";
+import {ProjectIndexPagePresentation} from "./component/pages/project";
+import {ApiIndexPagePresentation} from "./component/pages/api";
 
 export const App: FunctionComponent = () => {
   return (
     <HashRouter>
       <Route path={"/"} exact component={TopPagePresentation} />
       <Route path={"/project"} component={ProjectIndexPagePresentation} />
-      <Route path={"/project/create"} component={ProjectCreatePagePresentation} />
-      <Route path={"/project/edit"} component={ProjectEditPagePresentation} />
+      <Route path={"/api"} component={ApiIndexPagePresentation} />
     </HashRouter>
   )
 };

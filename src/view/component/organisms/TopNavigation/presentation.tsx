@@ -7,9 +7,10 @@ import {
   Theme,
   Typography,
 } from "@material-ui/core";
-import {SplitButtonPresentation} from "../SplitButton/presentation";
-import {CreateApiButtonPresentation} from "../CreateApiButton/presentation";
-import {CreateProjectButtonPresentation} from "../CreateProjectButton/presentation";
+import {SplitButtonPresentation} from "../../atoms/SplitButton/presentation";
+import {EditorDialogPresentation} from "../../molecules/EditorDialog/presentation";
+import {ProjectEditorPresentation} from "../ProjectEditor/presentation";
+import {ApiEditorPresentation} from "../ApiEditor/presentation";
 
 export interface TopNavigationProps {
   drawerWidth: number
@@ -57,8 +58,13 @@ export const TopNavigationPresentation: FunctionComponent<TopNavigationProps> = 
         </div>
       </Toolbar>
     </AppBar>
-      <CreateApiButtonPresentation openState={openApi} closeHandler={() => setOpenApi(false)} />
-      <CreateProjectButtonPresentation openState={openProject} closeHandler={() => setOpenProject(false)} />
+      <EditorDialogPresentation openState={openApi} closeHandler={() => setOpenApi(false)}>
+        <ApiEditorPresentation />
+      </EditorDialogPresentation>
+      <EditorDialogPresentation openState={openProject} closeHandler={() => setOpenProject(false)}>
+        <ProjectEditorPresentation />
+      </EditorDialogPresentation>
+
     </div>
   )
 };

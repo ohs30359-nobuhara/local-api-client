@@ -6,7 +6,6 @@ import {
   DialogTitle,
   DialogContent,
 } from "@material-ui/core";
-import {ApiStatusPresentation} from "../ApiStatus/presentation";
 
 /**
  * Props
@@ -18,10 +17,10 @@ interface Props {
 }
 
 /**
- * CreateApiButtonPresentation
+ * EditorDialogPresentation
  * @constructor
  */
-export const CreateApiButtonPresentation: FunctionComponent<Props> = (props) => {
+export const EditorDialogPresentation: FunctionComponent<Props> = (props) => {
   const [open, setOpen] = useState(props.openState);
   const handleWindowClose = (): void => {
     setOpen(false);
@@ -42,7 +41,7 @@ export const CreateApiButtonPresentation: FunctionComponent<Props> = (props) => 
     >
       <DialogTitle id="form-dialog-title">API新規作成</DialogTitle>
       <DialogContent>
-        <ApiStatusPresentation/>
+        {props.children}
       </DialogContent>
       <DialogActions>
         <Button onClick={handleWindowClose} color="primary">

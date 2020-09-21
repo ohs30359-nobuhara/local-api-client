@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 
-export const ApiStatusPresentation: FunctionComponent = (props) => {
+export const ApiEditorPresentation: FunctionComponent = (props) => {
   const classes = useStyles();
   const [contentType, setContentType] = React.useState('json');
   const [action, setAction] = React.useState('GET');

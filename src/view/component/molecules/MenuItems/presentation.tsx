@@ -9,7 +9,7 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@material-ui/core";
-import {MenuItemTypeSelectPresentation} from "../MenuItemTypeSelect/presentation";
+import {MenuItemTypeSelectPresentation} from "../../atoms/MenuItemTypeSelect/presentation";
 import {
   Folder,
   Home,
@@ -74,7 +74,7 @@ export const MenuItemsPresentation: FunctionComponent<MenuItemsPresentationProps
             <ListItemText primary="Project" />
           </ListItem>
 
-          <ListItem button component={Link} to={"/project"}>
+          <ListItem button component={Link} to={"/api"}>
             <ListItemIcon><CloudCircle/></ListItemIcon>
             <ListItemText primary="Api" />
           </ListItem>

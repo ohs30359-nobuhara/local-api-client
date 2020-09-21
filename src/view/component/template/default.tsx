@@ -1,8 +1,8 @@
 import React, { FunctionComponent } from 'react';
 import { Typography, Drawer, CssBaseline} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import {MenuItemsPresentation} from "../component/MenuItems/presentation";
-import {TopNavigationPresentation} from "../component/TopNavigation/presentation";
+import {MenuItemsPresentation} from "../molecules/MenuItems/presentation";
+import {TopNavigationPresentation} from "../organisms/TopNavigation/presentation";
 
 /**
  * デフォルトテンプレート
