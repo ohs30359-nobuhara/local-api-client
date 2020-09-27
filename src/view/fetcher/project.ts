@@ -1,8 +1,16 @@
-import {httpClient} from "../utils/httpRequest";
+import {HttpResponse, proxy} from "../utils/proxy";
 
 class ProjectFetcher {
-  public async findIndex(): Promise<any> {
-    return await httpClient.get({url: 'http://localhost:3000/resources/project', headers: new Headers(), body: {}})
+  private url: string = 'http://localhost:3000/resources/project';
+
+  public async findIndex(): Promise<any[]> {
+    const response: HttpResponse = await proxy({url: this.url, method: 'GET'})
+
+    if (response.status !== 200) {
+      return []
+    }
+
+    return response.data
   }
 }
 

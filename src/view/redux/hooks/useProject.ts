@@ -9,18 +9,13 @@ export const useProject = () => {
   const items = useSelector<{projectList: any}>(state=> { console.log('state',state); state.projectList})
   const dispatch = useDispatch()
 
-  const getResources = useCallback(async () => {
+  const getResources = useCallback(() => {
     setLoading(true);
 
-    try {
-      const result: any = await projectFetcher.findIndex();
-      const json: any[] = result.json;
-
-      dispatch(fetchProjectList(json));
-    } catch (e) {
-      setError(e);
-    }
-    setLoading(false);
+    projectFetcher.findIndex()
+      .then(result => dispatch(fetchProjectList(result)))
+      .catch((e) => setError(e))
+      .finally(() => setLoading(false));
   }, [loading, error, items]);
   return [items, getResources, loading, error];
 }
