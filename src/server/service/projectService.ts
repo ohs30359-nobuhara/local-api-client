@@ -20,7 +20,7 @@ class ProjectService {
       const result: boolean = await project.create();
       return ClientResponseVo.createSuccessful(result);
     } catch (e) {
-      return ClientResponseVo.createError('create fail', {}, 400);
+      return ClientResponseVo.createError(`create fail ${e}`, {}, 400);
     }
   }
 

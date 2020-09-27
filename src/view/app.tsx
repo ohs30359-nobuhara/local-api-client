@@ -6,22 +6,11 @@ import {ApiIndexPagePresentation} from "./component/pages/api";
 import {useProject} from "./redux/hooks/useProject";
 
 export const App: FunctionComponent = () => {
-  const [items, getResources, loading, error]: any = useProject()
+  const [, get]: any = useProject()
   useEffect(() => {
-    getResources();
+    get();
   }, []);
 
-  if (loading) {
-    console.log('loading');
-  }
-
-  if (items) {
-    console.log('data', items);
-  }
-
-  if (error) {
-    console.log('error', error)
-  }
   return (
     <HashRouter>
       <Route path={"/"} exact component={TopPagePresentation} />

@@ -13,6 +13,27 @@ class ProjectProxy {
 
     return response.data
   }
+
+  public async create(project : Project): Promise<boolean> {
+    const response: HttpResponse = await proxy({
+      url: `${this.url}/create`, method: 'POST', params: {name: project.name}
+    })
+    return response.status === 200
+  }
+
+  public async update(project: Project): Promise<boolean> {
+    const response: HttpResponse = await proxy({
+      url: `${this.url}/update`, method: 'PUT', params: project
+    })
+    return response.status === 200
+  }
+
+  public async destroy(project: Project): Promise<boolean> {
+    const response: HttpResponse = await proxy({
+      url: `${this.url}/delete`, method: 'DELETE', params: project
+    })
+    return response.status === 200
+  }
 }
 
 export const projectProxy: ProjectProxy = new ProjectProxy();

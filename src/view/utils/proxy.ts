@@ -5,7 +5,7 @@ import axios, {AxiosRequestConfig, AxiosResponse} from 'axios';
  * @interface
  */
 export interface HttpRequest<T=any> {
-  method: 'GET' | 'POST' | 'POST' | 'DELETE'
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE'
   params?: T
   url: string
 }
