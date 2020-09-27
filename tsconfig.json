@@ -14,7 +14,13 @@
     "allowJs": false,
     "strictFunctionTypes": false,
     "jsx": "react",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@interface/*": ["interface/*"],
+      "@server/*": ["server/*"],
+      "@view/*": ["view/*"]
+    }
   },
   "lib": [
     "es5",
@@ -25,5 +31,6 @@
   "exclude": [
     "node_modules",
     ".idea"
-  ]
+  ],
+
 }

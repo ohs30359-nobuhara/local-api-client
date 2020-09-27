@@ -1,18 +1,11 @@
-import {fetchProjectList} from "../action";
 import {ReducerBuilder, reducerWithInitialState} from 'typescript-fsa-reducers';
-
-/**
- * State
- * @interface
- */
-interface State {
-  projectList: any
-}
+import {ProjectState} from "@view/redux/states/project";
+import {ProjectActions} from "@view/redux/actions/project";
 
 /**
  * projectReducer
  */
-export const projectReducer: ReducerBuilder<any> = reducerWithInitialState({projectList: []})
-  .case(fetchProjectList, (state: State, data: any) => {
+export const projectReducer: ReducerBuilder<ProjectState> = reducerWithInitialState({projectList: []})
+  .case(ProjectActions.fetch, (state, data) => {
     return Object.assign({}, state, { projectList: data })
   });

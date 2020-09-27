@@ -1,9 +1,10 @@
 import {HttpResponse, proxy} from "../utils/proxy";
+import {Project} from "@interface/project";
 
-class ProjectFetcher {
+class ProjectProxy {
   private url: string = 'http://localhost:3000/resources/project';
 
-  public async findIndex(): Promise<any[]> {
+  public async findIndex(): Promise<Project[]> {
     const response: HttpResponse = await proxy({url: this.url, method: 'GET'})
 
     if (response.status !== 200) {
@@ -14,4 +15,4 @@ class ProjectFetcher {
   }
 }
 
-export const projectFetcher: ProjectFetcher = new ProjectFetcher();
+export const projectProxy: ProjectProxy = new ProjectProxy();

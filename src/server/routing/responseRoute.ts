@@ -1,5 +1,5 @@
-import {Router} from "./router";
-import {responseService} from "../service/responseService";
+import {Router} from "@server/routing/router"
+import {responseService} from "@server/service/responseService";
 
 export const responseRouter: Router = new Router();
 responseRouter.get('/getApiResponse', responseService.findByApi)

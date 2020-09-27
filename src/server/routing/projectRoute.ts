@@ -1,5 +1,5 @@
-import {Router} from "./router";
-import {projectService} from "../service/projectService";
+import {Router} from "@server/routing/router"
+import {projectService} from "@server/service/projectService";
 
 export const projectRouter: Router = new Router();
 projectRouter.get('/', projectService.index)

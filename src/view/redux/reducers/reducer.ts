@@ -1,6 +1,14 @@
 import {combineReducers, Reducer} from 'redux'
 import {projectReducer} from "./project";
+import {ProjectState} from "@view/redux/states/project";
 
-export const reducer: Reducer = combineReducers({
-  projectReducer
+/**
+ * @interface
+ */
+export interface ReducerInterface {
+  project: ProjectState
+}
+
+export const reducer: Reducer<ReducerInterface> = combineReducers({
+  project: projectReducer
 })

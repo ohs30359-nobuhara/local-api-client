@@ -1,12 +1,13 @@
 import {Schema, SchemaStaticFunction, staticImplements} from "./schema";
 import {sqliteDriver} from "../driver";
+import {Api} from "../../../../Interface/api";
 
 /**
- * Response
+ * ResponseSchema
  * @class
  */
 @staticImplements<SchemaStaticFunction>()
-export class Api extends Schema {
+export class ApiSchema extends Schema implements Api {
   public id: number | null = null;
   public name: string | null = null;
   public method: string | null = null;
@@ -29,11 +30,11 @@ export class Api extends Schema {
     return (this.id != null && this.name != null);
   }
 
-  static async findById(id: number): Promise<Api| null>{
-    let m: Api | null = null;
+  static async findById(id: number): Promise<ApiSchema| null>{
+    let m: ApiSchema | null = null;
 
-    (await sqliteDriver.select('SELECT * FROM Api WHERE ID = ?', [id])).forEach((record: any) => {
-      m = new Api();
+    (await sqliteDriver.select('SELECT * FROM ApiSchema WHERE ID = ?', [id])).forEach((record: any) => {
+      m = new ApiSchema();
       m.id = record.id;
       m.name = record.name;
       m.method = record.method;
@@ -44,11 +45,11 @@ export class Api extends Schema {
     return m;
   }
 
-  static async findByPath(path: string): Promise<Api| null>{
-    let m: Api | null = null;
+  static async findByPath(path: string): Promise<ApiSchema| null>{
+    let m: ApiSchema | null = null;
 
-    (await sqliteDriver.select('SELECT * FROM Api WHERE PATH = ?', [path])).forEach((record: any) => {
-      m = new Api();
+    (await sqliteDriver.select('SELECT * FROM ApiSchema WHERE PATH = ?', [path])).forEach((record: any) => {
+      m = new ApiSchema();
       m.id = record.id;
       m.name = record.name;
       m.method = record.method;
@@ -59,9 +60,9 @@ export class Api extends Schema {
     return m;
   }
 
-  static async index(): Promise<Array<Api>> {
+  static async index(): Promise<Array<ApiSchema>> {
     return (await sqliteDriver.select('SELECT * FROM API')).map((record: any) => {
-      const m: Api = new Api();
+      const m: ApiSchema = new ApiSchema();
       m.id = record.id;
       m.name = record.name;
       m.method = record.method;
@@ -71,9 +72,9 @@ export class Api extends Schema {
     });
   }
 
-  static async findByProject(id: number): Promise<Array<Api>> {
+  static async findByProject(id: number): Promise<Array<ApiSchema>> {
     return (await sqliteDriver.select('SELECT * FROM API WHERE PROJECT_ID = ?', [id])).map((record: any) => {
-      const m: Api = new Api();
+      const m: ApiSchema = new ApiSchema();
       m.id = record.id;
       m.name = record.name;
       m.method = record.method;

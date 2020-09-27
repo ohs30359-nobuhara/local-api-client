@@ -1,12 +1,13 @@
 import {Schema, SchemaStaticFunction, staticImplements} from "./schema";
 import {sqliteDriver} from "../driver";
+import {Response} from "../../../../Interface/response";
 
 /**
- * Response
+ * ResponseSchema
  * @class
  */
 @staticImplements<SchemaStaticFunction>()
-export class Response extends Schema {
+export class ResponseSchema extends Schema implements Response {
   public id: number | null = null;
   public label: string | null = null;
   public status: number | null = null;
@@ -30,11 +31,11 @@ export class Response extends Schema {
     return (this.id != null && this.label != null);
   }
 
-  static async findById(id: number): Promise<Response| null>{
-    let m: Response | null = null;
+  static async findById(id: number): Promise<ResponseSchema| null>{
+    let m: ResponseSchema | null = null;
 
     (await sqliteDriver.select('SELECT * FROM RESPONSE WHERE ID = ?', [id])).forEach((record: any) => {
-      m = new Response();
+      m = new ResponseSchema();
       m.id = record.id;
       m.label = record.label;
       m.status = record.status;
@@ -46,9 +47,9 @@ export class Response extends Schema {
     return m;
   }
 
-  static async index(): Promise<Array<Response>> {
+  static async index(): Promise<Array<ResponseSchema>> {
     return (await sqliteDriver.select('SELECT * FROM API')).map((record: any) => {
-      const m: Response = new Response();
+      const m: ResponseSchema = new ResponseSchema();
       m.id = record.id;
       m.label = record.label;
       m.status = record.status;
@@ -59,9 +60,9 @@ export class Response extends Schema {
     });
   }
 
-  static async findByApi(apiId: number): Promise<Array<Response>> {
+  static async findByApi(apiId: number): Promise<Array<ResponseSchema>> {
     return (await sqliteDriver.select('SELECT * FROM response WHERE api_id = ?', [apiId])).map((record: any) => {
-      const m: Response = new Response();
+      const m: ResponseSchema = new ResponseSchema();
       m.id = record.id;
       m.label = record.label;
       m.status = record.status;
@@ -72,12 +73,12 @@ export class Response extends Schema {
     });
   }
 
-  static async findByRequestPath(projectName: string, apiPath: string): Promise<Response | null> {
+  static async findByRequestPath(projectName: string, apiPath: string): Promise<ResponseSchema | null> {
     const sql: string = `SELECT response.response, response.status, response.content_type FROM response INNER JOIN api ON api.id = response.api_id INNER JOIN project ON project.id = api.project_id WHERE project.name = ? AND api.path = ?;`;
-    let m: Response | null = null;
+    let m: ResponseSchema | null = null;
 
    (await sqliteDriver.select(sql, [projectName, apiPath])).map((record: any) => {
-      m = new Response();
+      m = new ResponseSchema();
       m.status = record.status;
       m.contentType = record.content_type;
       m.response = record.response;

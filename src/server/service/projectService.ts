@@ -1,6 +1,6 @@
-import {Project} from "../infra/sqlite/schema/project";
-import {ClientRequestVo} from "../domain/vo/clientRequestVo";
-import {ClientResponseVo} from "../domain/vo/clientResponseVo";
+import {ProjectSchema} from "@server/infra/sqlite/schema/projectSchema";
+import {ClientRequestVo} from "@server/domain/vo/clientRequestVo";
+import {ClientResponseVo} from "@server/domain/vo/clientResponseVo";
 
 /**
  * ProjectService
@@ -8,12 +8,12 @@ import {ClientResponseVo} from "../domain/vo/clientResponseVo";
  */
 class ProjectService {
   public async index(_: ClientRequestVo): Promise<ClientResponseVo> {
-    const projects: Project[] = await Project.index();
+    const projects: ProjectSchema[] = await ProjectSchema.index();
     return ClientResponseVo.createSuccessful(projects);
   }
 
   public async create(request: ClientRequestVo<{name: string}>): Promise<ClientResponseVo> {
-    const project: Project = new Project();
+    const project: ProjectSchema = new ProjectSchema();
     project.name = request.queryParams.name;
 
     try {
@@ -25,7 +25,7 @@ class ProjectService {
   }
 
   public async update(request: ClientRequestVo<{id: number, name: string}>): Promise<ClientResponseVo> {
-    const project: Project | null = await Project.findById(request.queryParams.id);
+    const project: ProjectSchema | null = await ProjectSchema.findById(request.queryParams.id);
 
     if (project == null) {
       return ClientResponseVo.createError('target not found', {}, 400);
@@ -42,7 +42,7 @@ class ProjectService {
   }
 
   public async delete(request: ClientRequestVo<{id: number, name: string}>): Promise<ClientResponseVo> {
-    const project: Project | null = await Project.findById(request.queryParams.id);
+    const project: ProjectSchema | null = await ProjectSchema.findById(request.queryParams.id);
 
     if (project == null) {
       return ClientResponseVo.createError('target not found', {}, 400);

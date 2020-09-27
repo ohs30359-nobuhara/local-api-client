@@ -1,6 +1,6 @@
-import {ClientResponseVo} from "../domain/vo/clientResponseVo";
-import {ClientRequestVo} from "../domain/vo/clientRequestVo";
-import {Response} from "../infra/sqlite/schema/response";
+import {ResponseSchema} from "@server/infra/sqlite/schema/responseSchema";
+import {ClientRequestVo} from "@server/domain/vo/clientRequestVo";
+import {ClientResponseVo} from "@server/domain/vo/clientResponseVo";
 
 /**
  * StabService
@@ -11,7 +11,7 @@ export class StabService {
     const resources: {project: string} = request.resourcesParams;
     const path: string = request.requestPath.replace(`/stab/${resources.project}`, "");
 
-    const response: Response | null = await Response.findByRequestPath(resources.project, path);
+    const response: ResponseSchema | null = await ResponseSchema.findByRequestPath(resources.project, path);
 
     if (response == null) {
       return ClientResponseVo.createError('not found', {}, 400);

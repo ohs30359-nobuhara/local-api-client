@@ -1,6 +1,6 @@
-import {ClientRequestVo} from "../domain/vo/clientRequestVo";
-import {ClientResponseVo} from "../domain/vo/clientResponseVo";
-import {Api} from "../infra/sqlite/schema/api";
+import {ApiSchema} from "@server/infra/sqlite/schema/apiSchema";
+import {ClientRequestVo} from "@server/domain/vo/clientRequestVo";
+import {ClientResponseVo} from "@server/domain/vo/clientResponseVo";
 
 /**
  * ApiService
@@ -8,12 +8,12 @@ import {Api} from "../infra/sqlite/schema/api";
  */
 class ApiService{
   public async findByProject(request: ClientRequestVo<{projectId: number}>): Promise<ClientResponseVo> {
-    const apis: Api[] = await Api.findByProject(request.queryParams.projectId);
+    const apis: ApiSchema[] = await ApiSchema.findByProject(request.queryParams.projectId);
     return ClientResponseVo.createSuccessful(apis);
   }
 
   public async create(request: ClientRequestVo<{name: string, path: string, method: string, projectId: number}>): Promise<ClientResponseVo> {
-    const api: Api = new Api();
+    const api: ApiSchema = new ApiSchema();
 
     api.path = request.queryParams.path;
     api.method = request.queryParams.method;
@@ -29,7 +29,7 @@ class ApiService{
   }
 
   public async update(request: ClientRequestVo<{name: string, path: string, method: string, id: number}>): Promise<ClientResponseVo> {
-    const api: Api | null = await Api.findById(request.queryParams.id);
+    const api: ApiSchema | null = await ApiSchema.findById(request.queryParams.id);
 
     if (api == null) {
       return ClientResponseVo.createError('target not found', {}, 400);
@@ -48,7 +48,7 @@ class ApiService{
   }
 
   public async delete(request: ClientRequestVo<{id: number}>): Promise<ClientResponseVo> {
-    const api: Api | null = await Api.findById(request.queryParams.id);
+    const api: ApiSchema | null = await ApiSchema.findById(request.queryParams.id);
 
     if (api == null) {
       return ClientResponseVo.createError('target not found', {}, 400);

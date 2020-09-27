@@ -1,8 +1,8 @@
 import fastify from 'fastify'
 import { Server, IncomingMessage, ServerResponse } from 'http'
-import {ClientResponseVo} from "./domain/vo/clientResponseVo";
-import {ClientRequestVo} from "./domain/vo/clientRequestVo";
-import {Router} from "./routing/router";
+import {ClientRequestVo} from "@server/domain/vo/clientRequestVo";
+import {ClientResponseVo} from "@server/domain/vo/clientResponseVo";
+import {Router} from "@server/routing/router";
 
 export class Application {
   private readonly server: fastify.FastifyInstance<Server, IncomingMessage, ServerResponse>;
