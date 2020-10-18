@@ -13,8 +13,8 @@ app.on('ready', () => {
     height: 600,
     minWidth: 800,
     minHeight: 400,
-    acceptFirstMouse: true,
-    titleBarStyle: 'hidden',
+    // acceptFirstMouse: true,
+    // titleBarStyle: 'hidden',
     webPreferences: {
       nodeIntegration: true
     }
