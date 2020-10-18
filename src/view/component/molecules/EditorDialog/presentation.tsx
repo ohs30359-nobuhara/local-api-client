@@ -14,6 +14,7 @@ import {
 interface Props {
   openState: boolean
   closeHandler: () => void
+  submitHandler: () => void
 }
 
 /**
@@ -38,6 +39,8 @@ export const EditorDialogPresentation: FunctionComponent<Props> = (props) => {
       aria-labelledby="form-dialog-title"
       fullWidth={true}
       maxWidth={'lg'}
+      disableEscapeKeyDown={true}
+      disableBackdropClick={true}
     >
       <DialogTitle id="form-dialog-title">API新規作成</DialogTitle>
       <DialogContent>
@@ -47,8 +50,10 @@ export const EditorDialogPresentation: FunctionComponent<Props> = (props) => {
         <Button onClick={handleWindowClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleWindowClose} color="primary">
-          Create
+        <Button onClick={() => {
+          props.submitHandler();
+        }} color="primary">
+          Submit
         </Button>
       </DialogActions>
     </Dialog>

@@ -12,6 +12,10 @@ export class ProjectSchema extends Schema implements Project {
   public name: string | null = null;
 
   async create(): Promise<boolean> {
+    if ((this.name || '').length === 0) {
+      throw Error('require params "name"');
+    }
+
     return await sqliteDriver.insert('INSERT INTO PROJECT (NAME) VALUES  (?)', [this.name]);
   }
 

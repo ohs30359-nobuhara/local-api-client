@@ -1,17 +1,13 @@
 import React, {FunctionComponent, useEffect, useState} from 'react';
-import {ProjectEditorPresentation} from "./presentation";
-import {useProject} from "@view/redux/hooks/useProject";
-import {Project} from "@interface/project";
 import {EditorDialogPresentation} from "@view/component/molecules/EditorDialog/presentation";
+import {ApiEditorPresentation} from "@view/component/organisms/ApiEditor/presentation";
 
 interface Props {
-  project?: Project
   open: boolean
 }
 
-export const ProjectEditorContainer: FunctionComponent<Props> = (props: Props) => {
+export const ApiEditorContainer: FunctionComponent<Props> = (props: Props) => {
   const [open, setOpen] = useState(props.open);
-  const [, , create]: any = useProject();
 
   useEffect(() => {
     setOpen(props.open)
@@ -25,7 +21,7 @@ export const ProjectEditorContainer: FunctionComponent<Props> = (props: Props) =
         console.log('登録 || 更新 処理');
       }}
     >
-      <ProjectEditorPresentation handleCreate={create} handleUpdate={create} project={props.project}/>
+      <ApiEditorPresentation />
     </EditorDialogPresentation>
   )
-}
+};

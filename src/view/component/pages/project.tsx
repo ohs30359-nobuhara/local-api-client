@@ -1,6 +1,6 @@
 import React, {FunctionComponent} from 'react';
 import {DefaultTemplatePresentation} from "../template/default";
-import {ProjectManagementPresentation} from "../organisms/ProjectManagement/presentation";
+import {ProjectManagementContainer} from "@view/component/organisms/ProjectManagement/container";
 
 /**
  * Project管理ページ
@@ -10,7 +10,7 @@ import {ProjectManagementPresentation} from "../organisms/ProjectManagement/pres
 export const ProjectIndexPagePresentation: FunctionComponent<any> = (props) => {
   return (
     <DefaultTemplatePresentation>
-      <ProjectManagementPresentation/>
+      <ProjectManagementContainer/>
     </DefaultTemplatePresentation>
   );
 };

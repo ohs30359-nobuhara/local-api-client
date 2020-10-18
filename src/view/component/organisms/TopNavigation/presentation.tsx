@@ -8,9 +8,8 @@ import {
   Typography,
 } from "@material-ui/core";
 import {SplitButtonPresentation} from "../../atoms/SplitButton/presentation";
-import {EditorDialogPresentation} from "../../molecules/EditorDialog/presentation";
-import {ApiEditorPresentation} from "../ApiEditor/presentation";
 import {ProjectEditorContainer} from "@view/component/organisms/ProjectEditor/container";
+import {ApiEditorContainer} from "@view/component/organisms/ApiEditor/container";
 
 export interface TopNavigationProps {
   drawerWidth: number
@@ -58,12 +57,8 @@ export const TopNavigationPresentation: FunctionComponent<TopNavigationProps> = 
         </div>
       </Toolbar>
     </AppBar>
-      <EditorDialogPresentation openState={openApi} closeHandler={() => setOpenApi(false)}>
-        <ApiEditorPresentation />
-      </EditorDialogPresentation>
-      <EditorDialogPresentation openState={openProject} closeHandler={() => setOpenProject(false)}>
-        <ProjectEditorContainer />
-      </EditorDialogPresentation>
+      <ApiEditorContainer open={openApi}/>
+      <ProjectEditorContainer open={openProject} />
     </div>
   )
 };
