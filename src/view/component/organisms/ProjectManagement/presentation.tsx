@@ -54,6 +54,8 @@ const useStyles = makeStyles({
 
 interface Props {
   records: Project[]
+  handleDelete: (project: Project) => void
+  handleUpdate: (project: Project) => void
 }
 
 export const ProjectManagementPresentation: FunctionComponent<Props> = (props) => {
@@ -123,6 +125,7 @@ export const ProjectManagementPresentation: FunctionComponent<Props> = (props) =
                         variant="contained"
                         color="default"
                         startIcon={<Edit/>}
+                        onClick={ () => props.handleUpdate(project)}
                       >
                         編集
                       </Button>
@@ -131,6 +134,7 @@ export const ProjectManagementPresentation: FunctionComponent<Props> = (props) =
                         variant="contained"
                         color="default"
                         startIcon={<Delete/>}
+                        onClick={ () => props.handleDelete(project)}
                       >
                         削除
                       </Button>

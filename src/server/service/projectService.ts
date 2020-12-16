@@ -14,7 +14,7 @@ class ProjectService {
 
   public async create(request: ClientRequestVo<{name: string}>): Promise<ClientResponseVo> {
     const project: ProjectSchema = new ProjectSchema();
-    project.name = request.queryParams.name;
+    project.name = request.body.name;
 
     try {
       const result: boolean = await project.create();
@@ -31,7 +31,7 @@ class ProjectService {
       return ClientResponseVo.createError('target not found', {}, 400);
     }
 
-    project.name = request.queryParams.name;
+    project.name = request.body.name;
 
     try {
       const result: boolean = await project.update();
@@ -41,8 +41,8 @@ class ProjectService {
     }
   }
 
-  public async delete(request: ClientRequestVo<{id: number, name: string}>): Promise<ClientResponseVo> {
-    const project: ProjectSchema | null = await ProjectSchema.findById(request.queryParams.id);
+  public async delete(request: ClientRequestVo<{id: number}>): Promise<ClientResponseVo> {
+    const project: ProjectSchema | null = await ProjectSchema.findById(request.body.id);
 
     if (project == null) {
       return ClientResponseVo.createError('target not found', {}, 400);

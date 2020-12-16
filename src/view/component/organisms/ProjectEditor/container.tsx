@@ -11,6 +11,7 @@ interface Props {
 
 export const ProjectEditorContainer: FunctionComponent<Props> = (props: Props) => {
   const [open, setOpen] = useState(props.open);
+  const [project, setProject] = useState(props.project);
   const [, , create]: any = useProject();
 
   useEffect(() => {
@@ -21,11 +22,9 @@ export const ProjectEditorContainer: FunctionComponent<Props> = (props: Props) =
     <EditorDialogPresentation
       openState={open}
       closeHandler={() => setOpen(false)}
-      submitHandler={() => {
-        console.log('登録 || 更新 処理');
-      }}
+      submitHandler={() => create(project)}
     >
-      <ProjectEditorPresentation handleCreate={create} handleUpdate={create} project={props.project}/>
+      <ProjectEditorPresentation handleChange={setProject} project={project}/>
     </EditorDialogPresentation>
   )
 }

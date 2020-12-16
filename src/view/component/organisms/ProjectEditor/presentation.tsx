@@ -1,18 +1,15 @@
 import React, {FunctionComponent, useState} from 'react';
 import {
-  Button, createStyles,
-  TextField, Theme,
+  TextField,
 } from "@material-ui/core";
 import {Project} from "@interface/project";
-import makeStyles from "@material-ui/core/styles/makeStyles";
 
 /**
  * Props
  * @interface
  */
 interface Props {
-  handleCreate: (project: Project) => void
-  handleUpdate: (project: Project) => void
+  handleChange: (project: Project) => void
   project?: Project
 }
 
@@ -23,17 +20,6 @@ interface Props {
 export const ProjectEditorPresentation: FunctionComponent<Props> = (props) => {
   const [project, setProject] = useState<Project>(props.project || {name: '', id: null});
 
-  const useStyles = makeStyles((theme: Theme) =>
-    createStyles({
-      button: {
-        marginTop: "30px",
-        width: "100%"
-      }
-    }),
-  );
-
-  const classes = useStyles();
-
   return (
     <div>
       <TextField
@@ -43,26 +29,11 @@ export const ProjectEditorPresentation: FunctionComponent<Props> = (props) => {
         type="text"
         fullWidth
         value={project.name}
-        onChange={e => { setProject({...project, name: e.target.value})  }}
+        onChange={e => {
+          setProject({...project, name: e.target.value});
+          props.handleChange(project);
+        }}
       />
-
-      {
-        (() => {
-          if (project.id == null) {
-            return (
-              <Button variant="contained" color="primary" className={classes.button} onClick={ () => {
-                props.handleCreate(project);
-              }}> create project</Button>
-            )
-          } else {
-            return (
-              <Button variant="contained" color="primary" className={classes.button} onClick={ () => {
-                props.handleUpdate(project);
-              }}> update project</Button>
-            )
-          }
-        })()
-      }
     </div>
   );
 };

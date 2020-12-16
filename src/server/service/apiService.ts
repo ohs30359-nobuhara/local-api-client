@@ -15,10 +15,10 @@ class ApiService{
   public async create(request: ClientRequestVo<{name: string, path: string, method: string, projectId: number}>): Promise<ClientResponseVo> {
     const api: ApiSchema = new ApiSchema();
 
-    api.path = request.queryParams.path;
-    api.method = request.queryParams.method;
-    api.name = request.queryParams.name;
-    api.project_id = request.queryParams.projectId;
+    api.path = request.body.path;
+    api.method = request.body.method;
+    api.name = request.body.name;
+    api.project_id = request.body.projectId;
 
     try {
       const result: boolean = await api.create();
@@ -35,9 +35,9 @@ class ApiService{
       return ClientResponseVo.createError('target not found', {}, 400);
     }
 
-    api.name = request.queryParams.name;
-    api.method = request.queryParams.method;
-    api.path  = request.queryParams.path;
+    api.name = request.body.name;
+    api.method = request.body.method;
+    api.path  = request.body.path;
 
     try {
       const result: boolean = await api.update();
@@ -48,7 +48,7 @@ class ApiService{
   }
 
   public async delete(request: ClientRequestVo<{id: number}>): Promise<ClientResponseVo> {
-    const api: ApiSchema | null = await ApiSchema.findById(request.queryParams.id);
+    const api: ApiSchema | null = await ApiSchema.findById(request.body.id);
 
     if (api == null) {
       return ClientResponseVo.createError('target not found', {}, 400);

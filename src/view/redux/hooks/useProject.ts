@@ -28,5 +28,18 @@ export const useProject = () => {
       .catch(e => {console.error(e)})
   }, [])
 
-  return [items, get, create];
+  const destroy = useCallback((project: Project) => {
+    projectProxy.destroy(project)
+      .then((state) => {
+        // 成功したらデータを更新
+        if (state) {
+          get()
+        } else {
+          console.log('fail delete')
+        }
+      })
+      .catch(e => {console.error(e)})
+  }, [])
+
+  return [items, get, create, destroy];
 }

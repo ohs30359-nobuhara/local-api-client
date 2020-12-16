@@ -6,7 +6,7 @@
 export class ClientRequestVo<T = any> {
   public readonly headers?: any;
   public readonly queryParams: T;
-  public readonly body: any;
+  public readonly body: T;
   public readonly resourcesParams: any;
   public readonly requestPath: string;
 

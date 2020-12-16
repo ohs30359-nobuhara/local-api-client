@@ -8,9 +8,9 @@ interface Props {
 }
 
 export const ProjectManagementContainer: FunctionComponent<Props> = (props) => {
-  const [items, , ]: any = useProject();
+  const [items, , ,destroy]: any = useProject();
 
   return (
-    <ProjectManagementPresentation records={items}/>
+    <ProjectManagementPresentation records={items} handleDelete={destroy} handleUpdate={() => {}}/>
   )
 }
